@@ -21,6 +21,7 @@ GitHub Pages などで公開する場合もそのまま配置するだけで動�
 - `calligraphy.html` / `js/calligraphy.js` / `css/calligraphy.css` — 書の旅（史跡・博物館データの地図表示、カテゴリ別フィルタ、検索、名跡索引とのクロスリンク）
 - `data/calligraphy-sites.json` — 55件の史跡・博物館データ（所在地・時代・詳細解説・アクセス等の旅行情報・出典）
 - `data/calligraphy-index.json` — 名跡・人名索引（判読できた分の部分データ）
+- `scripts/fetch-npm-opendata.mjs` — 國立故宮博物院 Open Data 取込スクリプト（ビルド時のみ実行。生成物は `data/npm-collection.json`）
 - `css/style.css` — 両サイト共通のベーススタイル
 - `vendor/leaflet/` — Leaflet.js をローカルに同梱（CDN非依存、オフラインでも動作）
 
@@ -42,6 +43,29 @@ GitHub Pages などで公開する場合もそのまま配置するだけで動�
 - 各詳細パネルには中国語の名称・住所を掲載。現地でタクシー運転手に見せたり、百度地図・高德地図など中国の地図アプリに貼り付けて検索したりできるよう、ワンクリックでコピーできるボタン付き。
 - **簡体字／繁体字の切替**に対応（`nameZh` / `addressZh` と `nameZhTw` / `addressZhTw`）。既定の「自動」では、大陸の史跡に簡体字、台湾所在の2件（台北・国立故宮博物院／中央研究院歴史語言研究所）に繁体字を表示する。全件を簡体字・繁体字のいずれかに固定することもできる。
 - 各エントリに**「日本との関わり・日本での受容」**（日本の書道教育での位置づけ、日本国内の関連所蔵品、日中交流史）と**「最新の知見・現状」**（近年の発掘成果・研究動向・施設更新）を掲載。
+
+### 國立故宮博物院（台北）Open Data の取り込み
+
+台北・国立故宮博物院が所蔵する書跡の名品（快雪時晴帖・自叙帖・書譜・寒食帖・毛公鼎など10件）について、同院の Open Data を詳細パネルに表示できます。
+
+**設計上の前提**: 本サイトは静的サイト（バックエンドなし）です。APIキーをブラウザ側のJavaScriptに置くと公開時に第三者へ露出するため、**通信はビルド時スクリプトに閉じ込め、サイトは生成済みの静的JSONだけを読む**構成にしています。`.env` と `*.key` は `.gitignore` 済みです。
+
+```bash
+# A. OpenAPI から取得（要APIキー。https://openapiweb.npm.gov.tw/ で申請）
+NPM_API_KEY=xxxxx NPM_API_PATH=/利用するAPIのパス \
+  node scripts/fetch-npm-opendata.mjs --mode=api
+
+# B. Open Data 專区（https://theme.npm.edu.tw/opendata/）から
+#    ダウンロードしたデータセットを取り込む（APIキー不要）
+node scripts/fetch-npm-opendata.mjs --mode=file --input=./npm-dataset.xml
+
+# C. 通信せずシードのみ生成（既定。参照リンクだけを持つ状態）
+node scripts/fetch-npm-opendata.mjs --mode=validate
+```
+
+生成物は `data/npm-collection.json` です。このファイルが無い・壊れている場合でもサイト本体は通常どおり動作し、故宮の所蔵品セクションが表示されなくなるだけです。各項目には取得元を示す `provenance`（`api` / `dataset` / `manual`）が入り、未照合の項目はUI上でも「Open Data未照合」と明示されます。
+
+**画像ライセンス**: 低解像度画像（100万画素）は CC0、中解像度画像（600万画素）は CC BY 4.0 です。CC BY の画像を使う場合は「國立故宮博物院」の出所表示が必要で、UIには出典と条件を常時表示しています。
 
 ### データについて（重要な注意点）
 

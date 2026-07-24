@@ -37,6 +37,9 @@
   var activeCategories = {};
   CATEGORY_ORDER.forEach(function (c) { activeCategories[c] = true; });
 
+  // 國立故宮博物院 Open Data（scripts/fetch-npm-opendata.mjs が生成。無くても動作する）
+  var npmCollection = { meta: null, bySite: {} };
+
   // 現在詳細パネルに表示中の対象（表記切替時の再描画用）
   var currentDetail = null;
 
@@ -129,6 +132,46 @@
     return html;
   }
 
+  function npmCollectionHtml(siteId) {
+    var items = npmCollection.bySite[siteId];
+    if (!items || !items.length) return "";
+
+    var html = '<div class="detail-content__section npm-block">';
+    html += '<h3>國立故宮博物院 Open Data 所蔵品</h3>';
+    html += '<div class="npm-block__list">';
+
+    items.forEach(function (it) {
+      html += '<a class="npm-card" href="' + escapeHtml(it.detailUrl) + '" target="_blank" rel="noopener noreferrer">';
+      if (it.imageUrl) {
+        html += '<img class="npm-card__img" src="' + escapeHtml(it.imageUrl) + '" alt="' +
+          escapeHtml(it.workJa) + '" loading="lazy">';
+      }
+      html += '<div class="npm-card__body">';
+      html += '<div class="npm-card__title">' + escapeHtml(it.workJa);
+      if (it.workZhTw && it.workZhTw !== it.workJa) {
+        html += '<span class="npm-card__zh">' + escapeHtml(it.workZhTw) + '</span>';
+      }
+      html += '</div>';
+      html += '<div class="npm-card__meta">' +
+        escapeHtml([it.dynasty, it.artist].filter(function (v) { return v && v !== "—"; }).join("・")) + '</div>';
+      if (it.npmId) html += '<div class="npm-card__id">文物統一編號: ' + escapeHtml(it.npmId) + '</div>';
+      if (it.license) html += '<div class="npm-card__license">' + escapeHtml(it.license) + '</div>';
+      if (it.provenance === "manual") {
+        html += '<div class="npm-card__pending">Open Data未照合（参照リンクのみ）</div>';
+      }
+      html += '</div></a>';
+    });
+
+    html += '</div>';
+    if (npmCollection.meta) {
+      html += '<p class="npm-block__note">出典: ' +
+        '<a href="' + escapeHtml(npmCollection.meta.portal) + '" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml(npmCollection.meta.source) + '</a>　' + escapeHtml(npmCollection.meta.license) + '</p>';
+    }
+    html += '</div>';
+    return html;
+  }
+
   function renderSiteDetail(item) {
     currentDetail = { kind: "site", data: item };
     var color = CATEGORY_COLORS[item.category] || "#555";
@@ -188,6 +231,8 @@
       });
       html += '</div>';
     }
+
+    html += npmCollectionHtml(item.id);
 
     if (item.japanContext) {
       html += '<div class="detail-content__knowledge detail-content__knowledge--jp">';
@@ -480,12 +525,27 @@
     });
   });
 
+  // 故宮Open Dataは任意ファイル。存在しない/壊れていてもサイト本体は動く。
+  var npmPromise = fetch("data/npm-collection.json")
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; });
+
   Promise.all([
     fetch("data/calligraphy-sites.json").then(function (r) { return r.json(); }),
-    fetch("data/calligraphy-index.json").then(function (r) { return r.json(); })
+    fetch("data/calligraphy-index.json").then(function (r) { return r.json(); }),
+    npmPromise
   ]).then(function (results) {
     var siteData = results[0];
     var indexData = results[1];
+    var npmData = results[2];
+
+    if (npmData && Array.isArray(npmData.items)) {
+      npmCollection.meta = npmData.meta || null;
+      npmData.items.forEach(function (it) {
+        if (!it.siteId) return;
+        (npmCollection.bySite[it.siteId] = npmCollection.bySite[it.siteId] || []).push(it);
+      });
+    }
 
     sites = (siteData.sites || []).slice().sort(function (a, b) { return a.number - b.number; });
     columns = siteData.columns || [];

@@ -184,6 +184,88 @@
   margin-bottom: 0;
 }
 
+.npm-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.npm-card {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper-alt);
+  text-decoration: none;
+  color: inherit;
+}
+
+.npm-card:hover {
+  border-color: var(--accent);
+}
+
+.npm-card__img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: #e6ddc9;
+}
+
+.npm-card__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.npm-card__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.npm-card__zh {
+  font-size: 0.74rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+.npm-card__meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.npm-card__id,
+.npm-card__license {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.npm-card__license {
+  display: inline-block;
+  background: #e8eef2;
+  color: #1f5670;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.npm-card__pending {
+  font-size: 0.66rem;
+  color: #9a7b4f;
+  margin-top: 3px;
+}
+
+.npm-block__note {
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
 .detail-content__knowledge {
   border-radius: 6px;
   padding: 10px 12px;
