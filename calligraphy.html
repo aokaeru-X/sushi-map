@@ -45,6 +45,17 @@
           <input type="search" id="site-search" placeholder="史跡・博物館名で検索…">
         </div>
         <div class="category-filters" id="category-filters"></div>
+
+        <div class="script-pref">
+          <span class="script-pref__label">中国語表記</span>
+          <div class="script-pref__buttons" id="script-pref">
+            <button type="button" class="script-pref__btn active" data-script="auto">自動</button>
+            <button type="button" class="script-pref__btn" data-script="cn">簡体字</button>
+            <button type="button" class="script-pref__btn" data-script="tw">繁体字</button>
+          </div>
+          <p class="script-pref__hint">「自動」は大陸の史跡に簡体字、台湾（台北・国立故宮博物院／中央研究院）に繁体字を表示します。</p>
+        </div>
+
         <ol id="site-list" class="site-list"></ol>
       </div>
 

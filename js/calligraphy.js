@@ -37,10 +37,14 @@
   var activeCategories = {};
   CATEGORY_ORDER.forEach(function (c) { activeCategories[c] = true; });
 
+  // 現在詳細パネルに表示中の対象（表記切替時の再描画用）
+  var currentDetail = null;
+
   detailClose.addEventListener("click", hideDetail);
 
   function hideDetail() {
     detailPanel.classList.add("detail-panel--hidden");
+    currentDetail = null;
   }
 
   function escapeHtml(str) {
@@ -94,7 +98,39 @@
     return html;
   }
 
+  // 中国語表記の設定: "auto"（台湾所在は繁体字・大陸は簡体字）/ "cn"（簡体字固定）/ "tw"（繁体字固定）
+  var scriptPref = "auto";
+
+  function resolveScript(region) {
+    if (scriptPref === "cn") return "cn";
+    if (scriptPref === "tw") return "tw";
+    return region === "TW" ? "tw" : "cn";
+  }
+
+  function zhBlockHtml(o) {
+    var useTw = resolveScript(o.region) === "tw";
+    var name = useTw ? (o.nameZhTw || o.nameZh) : (o.nameZh || o.nameZhTw);
+    var address = useTw ? (o.addressZhTw || o.addressZh) : (o.addressZh || o.addressZhTw);
+    if (!address) return "";
+
+    var label = useTw ? "現地で見せる中国語住所（繁体字）" : "現地で見せる中国語住所（簡体字）";
+    if (o.region === "TW") label += "　※台湾は繁体字を使用します";
+
+    var html = '<div class="detail-content__zh">';
+    html += '<div class="detail-content__zh-label">' + escapeHtml(label) + '</div>';
+    html += '<div class="detail-content__zh-row">';
+    html += '<div class="detail-content__zh-body">';
+    if (name) html += '<div class="detail-content__zh-name">' + escapeHtml(name) + '</div>';
+    html += '<div class="detail-content__zh-address">' + escapeHtml(address) + '</div>';
+    html += '</div>';
+    html += '<button type="button" class="detail-content__zh-copy" data-copy-text="' +
+      escapeHtml((name ? name + " " : "") + address) + '">コピー</button>';
+    html += '</div></div>';
+    return html;
+  }
+
   function renderSiteDetail(item) {
+    currentDetail = { kind: "site", data: item };
     var color = CATEGORY_COLORS[item.category] || "#555";
     var html = "";
     html += '<div class="detail-content__category" style="background:' + color + '">' + escapeHtml(item.category) + "</div>";
@@ -108,18 +144,13 @@
     if (item.era) html += '<b>時代:</b> ' + escapeHtml(item.era);
     html += '</div>';
 
-    if (item.addressZh) {
-      html += '<div class="detail-content__zh">';
-      html += '<div class="detail-content__zh-label">現地で見せる中国語住所（タクシー・地図アプリ用）</div>';
-      html += '<div class="detail-content__zh-row">';
-      html += '<div class="detail-content__zh-body">';
-      if (item.nameZh) html += '<div class="detail-content__zh-name">' + escapeHtml(item.nameZh) + '</div>';
-      html += '<div class="detail-content__zh-address">' + escapeHtml(item.addressZh) + '</div>';
-      html += '</div>';
-      html += '<button type="button" class="detail-content__zh-copy" data-copy-text="' + escapeHtml((item.nameZh ? item.nameZh + " " : "") + item.addressZh) + '">コピー</button>';
-      html += '</div>';
-      html += '</div>';
-    }
+    html += zhBlockHtml({
+      region: item.region,
+      nameZh: item.nameZh,
+      addressZh: item.addressZh,
+      nameZhTw: item.nameZhTw,
+      addressZhTw: item.addressZhTw
+    });
 
     if (item.summary) html += '<div class="detail-content__note"><b>' + escapeHtml(item.summary) + "</b></div>";
     if (item.details) html += '<div class="detail-content__note">' + escapeHtml(item.details) + "</div>";
@@ -139,6 +170,20 @@
       html += "</ul></div>";
     }
 
+    if (item.japanContext) {
+      html += '<div class="detail-content__knowledge detail-content__knowledge--jp">';
+      html += '<h3>日本との関わり・日本での受容</h3>';
+      html += '<p>' + escapeHtml(item.japanContext) + '</p>';
+      html += '</div>';
+    }
+
+    if (item.latestFindings) {
+      html += '<div class="detail-content__knowledge detail-content__knowledge--latest">';
+      html += '<h3>最新の知見・現状</h3>';
+      html += '<p>' + escapeHtml(item.latestFindings) + '</p>';
+      html += '</div>';
+    }
+
     html += relatedWorksHtml(item.relatedWorks);
     html += renderSources(item.sources);
 
@@ -156,6 +201,38 @@
         renderIndexList(indexSearchEl.value);
       });
     });
+    wireCopyButtons();
+  }
+
+  function renderColumnDetail(col) {
+    currentDetail = { kind: "column", data: col };
+    var html = '<div class="detail-content__category" style="background:#9a7b4f">コラム</div>';
+    html += '<div class="detail-content__title">' + escapeHtml(col.title) + '</div>';
+    html += zhBlockHtml({
+      region: col.region,
+      nameZh: col.titleZh,
+      addressZh: col.addressZh,
+      nameZhTw: col.titleZhTw,
+      addressZhTw: col.addressZhTw
+    });
+    html += '<div class="detail-content__note">' + escapeHtml(col.note) + '</div>';
+
+    if (col.japanContext) {
+      html += '<div class="detail-content__knowledge detail-content__knowledge--jp">' +
+        '<h3>日本との関わり・日本での受容</h3><p>' + escapeHtml(col.japanContext) + '</p></div>';
+    }
+    if (col.latestFindings) {
+      html += '<div class="detail-content__knowledge detail-content__knowledge--latest">' +
+        '<h3>最新の知見・現状</h3><p>' + escapeHtml(col.latestFindings) + '</p></div>';
+    }
+
+    html += renderSources(col.sources);
+    if (col.bookPage) {
+      html += '<div class="detail-content__bookpage">参考書籍 該当ページ: p.' + escapeHtml(col.bookPage) + '</div>';
+    }
+
+    detailContent.innerHTML = html;
+    detailPanel.classList.remove("detail-panel--hidden");
     wireCopyButtons();
   }
 
@@ -264,31 +341,7 @@
         })
       });
       marker.bindPopup('<div class="popup-title">' + escapeHtml(col.title) + "（コラム）</div>");
-      marker.on("click", function () {
-        var zhBlock = "";
-        if (col.addressZh) {
-          zhBlock =
-            '<div class="detail-content__zh">' +
-            '<div class="detail-content__zh-label">現地で見せる中国語住所（タクシー・地図アプリ用）</div>' +
-            '<div class="detail-content__zh-row">' +
-            '<div class="detail-content__zh-body">' +
-            (col.titleZh ? '<div class="detail-content__zh-name">' + escapeHtml(col.titleZh) + '</div>' : '') +
-            '<div class="detail-content__zh-address">' + escapeHtml(col.addressZh) + '</div>' +
-            '</div>' +
-            '<button type="button" class="detail-content__zh-copy" data-copy-text="' + escapeHtml((col.titleZh ? col.titleZh + " " : "") + col.addressZh) + '">コピー</button>' +
-            '</div>' +
-            '</div>';
-        }
-        detailContent.innerHTML =
-          '<div class="detail-content__category" style="background:#9a7b4f">コラム</div>' +
-          '<div class="detail-content__title">' + escapeHtml(col.title) + '</div>' +
-          zhBlock +
-          '<div class="detail-content__note">' + escapeHtml(col.note) + '</div>' +
-          renderSources(col.sources) +
-          (col.bookPage ? '<div class="detail-content__bookpage">参考書籍 該当ページ: p.' + escapeHtml(col.bookPage) + '</div>' : '');
-        detailPanel.classList.remove("detail-panel--hidden");
-        wireCopyButtons();
-      });
+      marker.on("click", function () { renderColumnDetail(col); });
       marker.addTo(markerLayer);
     });
   }
@@ -339,12 +392,22 @@
       groupEl.className = "index-list-group";
       groupEl.textContent = row.row;
       indexListEl.appendChild(groupEl);
+      if (row.note) {
+        var noteEl = document.createElement("p");
+        noteEl.className = "index-note";
+        noteEl.textContent = row.note;
+        indexListEl.appendChild(noteEl);
+      }
       items.forEach(function (it) {
         var el = document.createElement("div");
         el.className = "index-list-item" + (it.relatedSiteId ? " linkable" : "");
+        var site = it.relatedSiteId ? sitesById[it.relatedSiteId] : null;
+        var rightText = (it.bookPages && it.bookPages.length)
+          ? "p." + it.bookPages.join("・")
+          : (site ? site.number + ". " + site.name : "");
         el.innerHTML =
           '<span class="index-list-item__name">' + escapeHtml(it.name) + '</span>' +
-          '<span class="index-list-item__pages">p.' + it.bookPages.join("・") + '</span>';
+          '<span class="index-list-item__pages">' + escapeHtml(rightText) + '</span>';
         if (it.relatedSiteId && sitesById[it.relatedSiteId]) {
           el.addEventListener("click", function () {
             switchView("map");
@@ -361,6 +424,20 @@
 
   siteSearchEl.addEventListener("input", function () { renderSiteList(siteSearchEl.value); });
   indexSearchEl.addEventListener("input", function () { renderIndexList(indexSearchEl.value); });
+
+  document.querySelectorAll(".script-pref__btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      scriptPref = btn.getAttribute("data-script");
+      document.querySelectorAll(".script-pref__btn").forEach(function (b) {
+        b.classList.toggle("active", b === btn);
+      });
+      // 開いている詳細パネルを新しい表記で描き直す
+      if (currentDetail) {
+        if (currentDetail.kind === "site") renderSiteDetail(currentDetail.data);
+        else renderColumnDetail(currentDetail.data);
+      }
+    });
+  });
 
   Promise.all([
     fetch("data/calligraphy-sites.json").then(function (r) { return r.json(); }),
