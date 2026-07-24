@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蘇軾（蘇東坡）足跡地図 — 生涯と代表作</title>
+<meta name="description" content="蘇軾（1037–1101）が歴任・左遷された地を年代順に地図上にマッピングし、各地での出来事と代表作を紹介するインタラクティブマップ。">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__title">
+      <h1>蘇軾（蘇東坡）足跡地図</h1>
+      <p>景祐3年（1037年）〜建中靖国元年（1101年） — 生涯の赴任・左遷の地と代表作</p>
+    </div>
+    <button id="toggle-sidebar" class="app-header__toggle" aria-label="年表を開閉">年表 ☰</button>
+  </header>
+
+  <div class="app-body">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__intro">
+        <p>眉州眉山に生まれ、科挙及第後は各地の地方官を歴任。新法党との政争により黄州・恵州・儋州へと左遷を重ねながら、赴任地ごとに治水・教育・文学の足跡を残した。番号をクリックすると地図が該当地に移動します。</p>
+      </div>
+      <ol id="timeline-list" class="timeline-list"></ol>
+
+      <div class="sidebar__layers">
+        <h2>表示レイヤー</h2>
+        <label><input type="checkbox" id="layer-life" checked> 生涯の足跡（番号ピン）</label>
+        <label><input type="checkbox" id="layer-memorials"> 現存する記念地・史跡</label>
+      </div>
+    </aside>
+
+    <main class="map-wrap">
+      <div id="map"></div>
+      <div id="detail-panel" class="detail-panel detail-panel--hidden">
+        <button id="detail-close" class="detail-panel__close" aria-label="閉じる">×</button>
+        <div id="detail-content"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
