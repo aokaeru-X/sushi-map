@@ -108,6 +108,19 @@
     if (item.era) html += '<b>時代:</b> ' + escapeHtml(item.era);
     html += '</div>';
 
+    if (item.addressZh) {
+      html += '<div class="detail-content__zh">';
+      html += '<div class="detail-content__zh-label">現地で見せる中国語住所（タクシー・地図アプリ用）</div>';
+      html += '<div class="detail-content__zh-row">';
+      html += '<div class="detail-content__zh-body">';
+      if (item.nameZh) html += '<div class="detail-content__zh-name">' + escapeHtml(item.nameZh) + '</div>';
+      html += '<div class="detail-content__zh-address">' + escapeHtml(item.addressZh) + '</div>';
+      html += '</div>';
+      html += '<button type="button" class="detail-content__zh-copy" data-copy-text="' + escapeHtml((item.nameZh ? item.nameZh + " " : "") + item.addressZh) + '">コピー</button>';
+      html += '</div>';
+      html += '</div>';
+    }
+
     if (item.summary) html += '<div class="detail-content__note"><b>' + escapeHtml(item.summary) + "</b></div>";
     if (item.details) html += '<div class="detail-content__note">' + escapeHtml(item.details) + "</div>";
 
@@ -143,6 +156,37 @@
         renderIndexList(indexSearchEl.value);
       });
     });
+    wireCopyButtons();
+  }
+
+  function wireCopyButtons() {
+    detailContent.querySelectorAll(".detail-content__zh-copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy-text") || "";
+        var done = function () {
+          var original = btn.textContent;
+          btn.textContent = "コピーしました";
+          setTimeout(function () { btn.textContent = original; }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+        } else {
+          fallbackCopy(text, done);
+        }
+      });
+    });
+  }
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) { /* ignore */ }
+    document.body.removeChild(ta);
+    done();
   }
 
   function focusSite(item) {
@@ -221,13 +265,29 @@
       });
       marker.bindPopup('<div class="popup-title">' + escapeHtml(col.title) + "（コラム）</div>");
       marker.on("click", function () {
+        var zhBlock = "";
+        if (col.addressZh) {
+          zhBlock =
+            '<div class="detail-content__zh">' +
+            '<div class="detail-content__zh-label">現地で見せる中国語住所（タクシー・地図アプリ用）</div>' +
+            '<div class="detail-content__zh-row">' +
+            '<div class="detail-content__zh-body">' +
+            (col.titleZh ? '<div class="detail-content__zh-name">' + escapeHtml(col.titleZh) + '</div>' : '') +
+            '<div class="detail-content__zh-address">' + escapeHtml(col.addressZh) + '</div>' +
+            '</div>' +
+            '<button type="button" class="detail-content__zh-copy" data-copy-text="' + escapeHtml((col.titleZh ? col.titleZh + " " : "") + col.addressZh) + '">コピー</button>' +
+            '</div>' +
+            '</div>';
+        }
         detailContent.innerHTML =
           '<div class="detail-content__category" style="background:#9a7b4f">コラム</div>' +
           '<div class="detail-content__title">' + escapeHtml(col.title) + '</div>' +
+          zhBlock +
           '<div class="detail-content__note">' + escapeHtml(col.note) + '</div>' +
           renderSources(col.sources) +
           (col.bookPage ? '<div class="detail-content__bookpage">参考書籍 該当ページ: p.' + escapeHtml(col.bookPage) + '</div>' : '');
         detailPanel.classList.remove("detail-panel--hidden");
+        wireCopyButtons();
       });
       marker.addTo(markerLayer);
     });
