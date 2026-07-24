@@ -179,14 +179,26 @@
     });
   }
 
+  function jitteredLatLng(lat, lng, seen) {
+    var key = lat.toFixed(2) + "," + lng.toFixed(2);
+    var count = seen[key] || 0;
+    seen[key] = count + 1;
+    if (count === 0) return [lat, lng];
+    var angle = count * 2.4;
+    var r = 0.06 * count;
+    return [lat + r * Math.cos(angle), lng + r * Math.sin(angle)];
+  }
+
   function renderMarkers() {
     markerLayer.clearLayers();
     markers = {};
+    var seen = {};
     sites.filter(function (s) { return activeCategories[s.category]; })
       .forEach(function (item) {
         if (typeof item.lat !== "number" || typeof item.lng !== "number") return;
         var color = CATEGORY_COLORS[item.category] || "#555";
-        var marker = L.marker([item.lat, item.lng], { icon: numberedIcon(item.number, color) });
+        var pos = jitteredLatLng(item.lat, item.lng, seen);
+        var marker = L.marker(pos, { icon: numberedIcon(item.number, color) });
         marker.bindPopup(
           '<div class="popup-title">' + escapeHtml(item.number + ". " + item.name) + "</div>" +
           '<div class="popup-meta">' + escapeHtml(item.category) + "・" + escapeHtml([item.province, item.city].filter(Boolean).join(" ")) + "</div>"
@@ -198,7 +210,8 @@
 
     columns.forEach(function (col) {
       if (typeof col.lat !== "number" || typeof col.lng !== "number") return;
-      var marker = L.marker([col.lat, col.lng], {
+      var colPos = jitteredLatLng(col.lat, col.lng, seen);
+      var marker = L.marker(colPos, {
         icon: L.divIcon({
           className: "",
           html: '<div class="leaflet-div-icon-memorial">欄</div>',
