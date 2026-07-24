@@ -1,0 +1,24 @@
+{
+  "sites": [
+    {
+      "id": "s01",
+      "number": 1,
+      "category": "重要史跡",
+      "name": "殷墟（テスト仮データ）",
+      "reading": "いんきょ",
+      "province": "河南省",
+      "city": "安陽市",
+      "lat": 36.128,
+      "lng": 114.318,
+      "era": "殷（商）後期",
+      "summary": "動作確認用の仮データです。",
+      "details": "これはUI動作確認用の仮データです。後続の調査結果で置き換えます。",
+      "travel": { "access": "仮データ", "hours": "仮データ", "admission": "仮データ", "tips": "仮データ" },
+      "highlights": ["甲骨文"],
+      "relatedWorks": ["甲骨文"],
+      "sources": [{ "title": "仮データ", "url": "https://example.com", "publisher": "仮" }],
+      "bookPage": 10
+    }
+  ],
+  "columns": []
+}
