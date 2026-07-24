@@ -170,6 +170,25 @@
       html += "</ul></div>";
     }
 
+    if (item.extraLocations && item.extraLocations.length) {
+      html += '<div class="detail-content__section"><h3>離れた場所にある関連地点</h3>';
+      item.extraLocations.forEach(function (ex) {
+        html += '<div class="extra-loc">';
+        html += '<div class="extra-loc__label">' + escapeHtml(ex.label) + '</div>';
+        html += '<div class="extra-loc__place">' + escapeHtml([ex.province, ex.city].filter(Boolean).join(" ")) + '</div>';
+        if (ex.note) html += '<div class="extra-loc__note">' + escapeHtml(ex.note) + '</div>';
+        html += zhBlockHtml({
+          region: item.region,
+          nameZh: ex.nameZh,
+          addressZh: ex.addressZh,
+          nameZhTw: ex.nameZhTw,
+          addressZhTw: ex.addressZhTw
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+
     if (item.japanContext) {
       html += '<div class="detail-content__knowledge detail-content__knowledge--jp">';
       html += '<h3>日本との関わり・日本での受容</h3>';
@@ -327,6 +346,28 @@
         marker.on("click", function () { focusSite(item); });
         marker.addTo(markerLayer);
         markers[item.id] = marker;
+
+        // 同一項目でも離れた場所にある関連地点（副ピン）
+        (item.extraLocations || []).forEach(function (ex) {
+          if (typeof ex.lat !== "number" || typeof ex.lng !== "number") return;
+          var exPos = jitteredLatLng(ex.lat, ex.lng, seen);
+          var exMarker = L.marker(exPos, {
+            icon: L.divIcon({
+              className: "",
+              html: '<div class="leaflet-div-icon-sub" style="border-color:' + color + ';color:' + color + '">' + item.number + '</div>',
+              iconSize: [24, 24],
+              iconAnchor: [12, 12],
+              popupAnchor: [0, -12]
+            })
+          });
+          exMarker.bindPopup(
+            '<div class="popup-title">' + escapeHtml(ex.label) + "</div>" +
+            '<div class="popup-meta">' + escapeHtml(item.number + ". " + item.name) + " の関連地点・" +
+            escapeHtml([ex.province, ex.city].filter(Boolean).join(" ")) + "</div>"
+          );
+          exMarker.on("click", function () { renderSiteDetail(item); });
+          exMarker.addTo(markerLayer);
+        });
       });
 
     columns.forEach(function (col) {
