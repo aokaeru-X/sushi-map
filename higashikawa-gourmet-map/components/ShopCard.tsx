@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { categoryLabel, pick, t } from '@/lib/i18n';
 import type { Lang, Shop } from '@/types/shop';
 import {
   googleMapsDirectionsUrl,
   googleMapsUrl,
   instagramUrl,
+  shopPath,
   telUrl,
 } from '@/utils/urlGenerator';
 
@@ -76,6 +78,7 @@ export default function ShopCard({ shop, lang, isSelected, onSelect }: Props) {
       )}
 
       <p className="shop-card__links">
+        <Link href={shopPath(lang, shop.id)}>{t('details', lang)}</Link>
         <a href={googleMapsUrl(shop)} target="_blank" rel="noopener noreferrer">
           {t('openInGoogleMaps', lang)}
         </a>

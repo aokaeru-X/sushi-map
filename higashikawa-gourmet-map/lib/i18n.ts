@@ -74,6 +74,7 @@ const DICTIONARY = {
     en: 'Notion is not connected — showing the bundled sample dataset.',
     'zh-TW': '尚未連接 Notion，目前顯示內建範例資料。',
   },
+  details: { ja: '詳細', en: 'Details', 'zh-TW': '詳細資訊' },
   backToMap: { ja: '地図に戻る', en: 'Back to map', 'zh-TW': '返回地圖' },
   shopList: { ja: '店舗一覧', en: 'Shops', 'zh-TW': '店家列表' },
   adminTitle: { ja: 'URL インジェスト', en: 'URL ingestion', 'zh-TW': 'URL 匯入' },

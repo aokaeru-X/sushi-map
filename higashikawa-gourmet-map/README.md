@@ -26,6 +26,7 @@ npm run dev                    # http://localhost:3000 → /ja へリダイレ�
 | `npm run dev` | 開発サーバ |
 | `npm run build` / `npm start` | 本番ビルド / 起動 |
 | `npm run typecheck` | 型チェック |
+| `npm test` | ユニットテスト（node:test、45 件） |
 | `npm run seed:notion -- --dry-run` | シード 67 件の投入内容を確認 |
 | `npm run seed:notion` | Notion に 67 件を投入（Name_JA 重複はスキップ） |
 | `npm run geocode` | 住所から緯度経度を取得して `data/seed-shops.json` を更新 |
@@ -105,10 +106,13 @@ higashikawa-gourmet-map/
 │   ├── [lang]/
 │   │   ├── layout.tsx            # ルートレイアウト（ja / en / zh-TW）
 │   │   ├── page.tsx              # Notion 連携対応メインマップページ
+│   │   ├── shops/[shopId]/page.tsx  # 店舗詳細（OG 画像・共有用）
 │   │   └── admin/page.tsx        # URL インジェスト画面
-│   └── api/
-│       ├── revalidate/route.ts   # Notion 更新時のISRキャッシュ破棄API
-│       └── admin/ingest/route.ts # URL投入→AI解析→Notion Draft作成API
+│   ├── api/
+│   │   ├── revalidate/route.ts   # Notion 更新時のISRキャッシュ破棄API
+│   │   └── admin/ingest/route.ts # URL投入→AI解析→Notion Draft作成API
+│   ├── sitemap.ts / robots.ts    # 3言語 × 店舗数のサイトマップ
+│   └── icon.svg
 ├── lib/
 │   ├── notion.ts                 # Notion SDK クライアント & データ変換関数
 │   ├── aiExtractor.ts            # LLM (Claude/Gemini) によるURL本文解析
@@ -119,6 +123,7 @@ higashikawa-gourmet-map/
 ├── utils/urlGenerator.ts         # 動的SNS・Mapリンク生成
 ├── data/seed-shops.json          # グルメMAP 令和8年7月版 67 店舗
 ├── scripts/                      # Notion 投入 / ジオコーディング
+├── tests/                        # node:test によるユニットテスト
 └── proxy.ts                      # 言語プレフィックスへのリダイレクト
 ```
 
@@ -136,13 +141,33 @@ higashikawa-gourmet-map/
   Notion に訳が無い項目は日本語にフォールバックします。
 - **Next.js 16**: `middleware.ts` は非推奨のため `proxy.ts` を使用しています。
 
-## 6. 動作確認済みの範囲
+## 6. テスト
+
+`npm test`（node:test、45 件）で以下をネットワーク非依存に検証しています。
+
+- `assertSafeUrl`: http/https 以外と内部アドレス（localhost / 127.0.0.1 / 10.x / 192.168.x /
+  169.254.x / 172.16–31.x / *.internal）の拒否、172.32.x など公開アドレスの許可
+- `extractMainContentText`: script / style / nav の除去、ブロック要素の改行化、
+  HTML エンティティ復号、12,000 文字での打ち切り
+- `normalizeExtracted`: 店名欠落時 422、未知カテゴリの丸め、既知 Features のみ通過、
+  `""` / `"null"` の null 化、Instagram の `@` 除去
+- `pageToShop`: プロパティ欠落時のフォールバック、未知 Status / Category の丸め、
+  Number を Text で運用した場合の救済、Files 型 HeroImageUrl、複数 SourceURLs の分割
+- `buildNotionProperties`: draft 既定、空項目のプロパティ省略
+- `urlGenerator`: 概算座標では店名＋住所検索に切り替わること、tel/Instagram の正規化
+- シードデータ 67 件のスキーマ整合（カテゴリ・住所・座標範囲・電話番号形式・id 重複なし）
+
+## 7. 動作確認済みの範囲
 
 `USE_SEED_DATA=true` の本番ビルドで以下を実機確認しています（Chromium）。
 
 - `/ja` `/en` `/zh-TW` の 3 言語が静的生成され、67 件のピンとカードが描画される
-- カテゴリ絞り込み（例: パン・洋菓子 → 15 件）、フリーワード検索（例: 「湧水」→ 5 件）
+- カテゴリ絞り込み（例: パン・洋菓子 → 15 件、カフェ → 21 件）、
+  フリーワード検索（例: 「湧水」→ 5 件）
 - カード / ピンのクリックで地図が移動しポップアップが開く
+- 店舗詳細への遷移と「地図に戻る」の往復 3 回 + 言語切替 3 回で
+  コンソールエラー・4xx ともに 0 件
+- 存在しない店舗 ID は 404、`/sitemap.xml` は 204 URL、`/robots.txt` は admin と api を除外
 - `POST /api/revalidate`: シークレット不一致 401 / 一致 200（タグ失効）
 - `POST /api/admin/ingest`: トークン無し 401 / 内部アドレス 400 / 非 http(s) 400
 

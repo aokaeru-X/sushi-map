@@ -9,7 +9,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "seed:notion": "tsx scripts/seedNotion.ts",
-    "geocode": "tsx scripts/geocode.ts"
+    "geocode": "tsx scripts/geocode.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:watch": "node --import tsx --test --watch tests/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

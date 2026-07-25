@@ -28,5 +28,7 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|images|favicon.ico|robots.txt|sitemap.xml).*)'],
+  // api / _next と、拡張子付きのパス（icon.svg, robots.txt, sitemap.xml,
+  // favicon.ico, /images/*.jpg など）は言語プレフィックスを付けない
+  matcher: ['/((?!api|_next|.*\\.).*)'],
 };

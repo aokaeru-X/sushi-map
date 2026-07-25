@@ -53,6 +53,8 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
+  // ページ遷移で地図を破棄したあとに残った effect が走るのを防ぐ
+  const disposedRef = useRef(false);
   // 描画ごとに新しい関数が来ても effect を再実行させないための ref
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
@@ -60,6 +62,7 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
   // 地図の初期化（マウント時のみ）
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
+    disposedRef.current = false;
 
     const map = L.map(containerRef.current, {
       center: TOWN_CENTER,
@@ -77,9 +80,16 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
     mapRef.current = map;
 
     return () => {
+      disposedRef.current = true;
+      // 進行中のパン / ズームアニメーションを止めてから破棄する。
+      // 止めずに remove() すると、残ったアニメーションが削除済みの pane を
+      // 参照して `_leaflet_pos` の読み取りエラーになる。
+      map.stop();
+      for (const marker of markersRef.current.values()) marker.remove();
+      markersRef.current.clear();
+      map.off();
       map.remove();
       mapRef.current = null;
-      markersRef.current.clear();
     };
   }, []);
 
@@ -88,7 +98,7 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
   // マーカーの再構築（表示対象が変わったとき）
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) return;
+    if (!map || disposedRef.current) return;
 
     for (const marker of markersRef.current.values()) marker.remove();
     markersRef.current.clear();
@@ -142,7 +152,7 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
       const bounds = L.latLngBounds(
         shops.map((shop) => [shop.location.lat, shop.location.lng] as [number, number]),
       );
-      map.fitBounds(bounds.pad(0.15), { maxZoom: 15 });
+      map.fitBounds(bounds.pad(0.15), { maxZoom: 15, animate: false });
     } else {
       map.setView(TOWN_CENTER, DEFAULT_ZOOM);
     }
@@ -153,7 +163,7 @@ export default function MapView({ shops, lang, selectedId, onSelect }: Props) {
   // 選択状態のみが変わったとき: アイコン差し替え＋ポップアップ表示
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) return;
+    if (!map || disposedRef.current) return;
 
     for (const shop of shops) {
       const marker = markersRef.current.get(shop.id);
