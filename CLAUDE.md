@@ -15,7 +15,7 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Or just open `index.html` directly in a browser. Map tiles are fetched live from OpenStreetMap, so an internet connection is required even though the page, data, and Leaflet library are all bundled locally.
+Must be served over HTTP — opening `index.html` directly via a `file://` URL will fail, since `js/app.js` loads `data/sushi.json` with `fetch()`, which most browsers block for local files. Map tiles are also fetched live from OpenStreetMap, so an internet connection is required even though the page, data, and Leaflet library are all bundled locally.
 
 There is no lint, build, or test command — verify changes by loading the page in a browser and clicking through the timeline/markers.
 
