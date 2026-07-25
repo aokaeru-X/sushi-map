@@ -132,6 +132,24 @@
     return html;
   }
 
+  function digitalResourcesHtml(list) {
+    if (!list || !list.length) return "";
+    var html = '<div class="detail-content__section digital-block">';
+    html += '<h3>中国のデジタルアーカイブ</h3>';
+    list.forEach(function (r) {
+      html += '<a class="digital-card" href="' + escapeHtml(r.url) + '" target="_blank" rel="noopener noreferrer">';
+      html += '<div class="digital-card__head">';
+      html += '<span class="digital-card__title">' + escapeHtml(r.title) + '</span>';
+      if (r.kind) html += '<span class="digital-card__kind">' + escapeHtml(r.kind) + '</span>';
+      html += '</div>';
+      if (r.publisher) html += '<div class="digital-card__pub">' + escapeHtml(r.publisher) + '</div>';
+      if (r.note) html += '<div class="digital-card__note">' + escapeHtml(r.note) + '</div>';
+      html += '</a>';
+    });
+    html += '</div>';
+    return html;
+  }
+
   function npmCollectionHtml(siteId) {
     var items = npmCollection.bySite[siteId];
     if (!items || !items.length) return "";
@@ -233,6 +251,7 @@
     }
 
     html += npmCollectionHtml(item.id);
+    html += digitalResourcesHtml(item.digitalResources);
 
     if (item.japanContext) {
       html += '<div class="detail-content__knowledge detail-content__knowledge--jp">';
