@@ -1,24 +1,24 @@
-# 中国書道史跡マップ集
+# 書の旅 — 中国書道史跡ガイド
 
-中国の書道史・金石学にまつわる史跡・博物館を扱うインタラクティブな静的Webサイト集です。ビルド不要、Leaflet.js をローカル同梱しているため CDN 非依存で動作します。
+中国の書道史・金石学にまつわる史跡・博物館を扱うインタラクティブな静的Webサイトです。ビルド不要、Leaflet.js をローカル同梱しているため CDN 非依存で動作します。
 
-1. **蘇軾（蘇東坡）足跡地図**（`index.html`） — 北宋の文学者・政治家 蘇軾（1037–1101）の生涯の赴任・左遷の地を年代順にマッピング
-2. **書の旅 — 中国書道史跡ガイド**（`calligraphy.html`） — 中国全土の重要史跡・三大石窟・見逃せない史跡・六大博物院・十大博物館・特色ある博物館（計55件）と、名跡・人名索引を網羅した旅行ガイド
+1. **書の旅 — 中国書道史跡ガイド**（`index.html`／トップページ） — 中国全土の重要史跡・三大石窟・見逃せない史跡・六大博物院・十大博物館・特色ある博物館（計55件）と、名跡・人名索引を網羅した旅行ガイド
+2. **蘇軾（蘇東坡）足跡地図**（`sushi.html`） — 北宋の文学者・政治家 蘇軾（1037–1101）の生涯の赴任・左遷の地を年代順にマッピング
 
 ## 見る
 
 ```
 python3 -m http.server 8000
-# http://localhost:8000/index.html        （蘇軾足跡地図）
-# http://localhost:8000/calligraphy.html  （書の旅）
+# http://localhost:8000/            （書の旅／トップページ）
+# http://localhost:8000/sushi.html  （蘇軾足跡地図）
 ```
 
 GitHub Pages などで公開する場合もそのまま配置するだけで動作します。地図タイルは OpenStreetMap を使用しているため、閲覧環境にインターネット接続が必要です。
 
 ## 構成
 
-- `index.html` / `js/app.js` / `data/sushi.json` — 蘇軾足跡地図（生涯データ、時期・地名・出来事・代表作・現存の記念地）
-- `calligraphy.html` / `js/calligraphy.js` / `css/calligraphy.css` — 書の旅（史跡・博物館データの地図表示、カテゴリ別フィルタ、検索、名跡索引とのクロスリンク）
+- `index.html` / `js/calligraphy.js` / `css/calligraphy.css` — 書の旅（史跡・博物館データの地図表示、カテゴリ別フィルタ、検索、名跡索引とのクロスリンク）
+- `sushi.html` / `js/app.js` / `data/sushi.json` — 蘇軾足跡地図（生涯データ、時期・地名・出来事・代表作・現存の記念地）
 - `data/calligraphy-sites.json` — 55件の史跡・博物館データ（所在地・時代・詳細解説・アクセス等の旅行情報・出典）
 - `data/calligraphy-index.json` — 名跡・人名索引（判読できた分の部分データ）
 - `scripts/fetch-npm-opendata.mjs` — 國立故宮博物院 Open Data 取込スクリプト（ビルド時のみ実行。生成物は `data/npm-collection.json`）
