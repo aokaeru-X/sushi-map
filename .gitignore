@@ -1,0 +1,11 @@
+# APIキー等の秘密情報は絶対にコミットしない
+.env
+.env.*
+!.env.example
+*.key
+
+# 故宮Open Dataからダウンロードした元データセット（生成物はdata/npm-collection.jsonのみ追跡）
+npm-dataset.*
+
+node_modules/
+.DS_Store

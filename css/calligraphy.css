@@ -1,0 +1,596 @@
+:root {
+  --cat-history: #a3372b;
+  --cat-grotto: #7d5ba6;
+  --cat-hidden: #b8863b;
+  --cat-six: #2e6e8e;
+  --cat-ten: #3a6b5c;
+  --cat-special: #6b6b6b;
+  --cat-column: #9a7b4f;
+}
+
+.sidebar__travel-modes {
+  margin: 0 0 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.sidebar__travel-modes summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sidebar__travel-modes ol {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.7;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.view-tab {
+  flex: 1;
+  padding: 8px 6px;
+  font-size: 0.8rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.view-tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.view-panel--hidden {
+  display: none;
+}
+
+.search-box {
+  margin-bottom: 10px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.category-chip {
+  font-size: 0.7rem;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  background: var(--paper);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.category-chip[data-active="true"] {
+  color: #fff;
+  border-color: transparent;
+}
+
+.category-chip[data-cat="重要史跡"][data-active="true"] { background: var(--cat-history); }
+.category-chip[data-cat="三大石窟"][data-active="true"] { background: var(--cat-grotto); }
+.category-chip[data-cat="見逃せない史跡"][data-active="true"] { background: var(--cat-hidden); }
+.category-chip[data-cat="六大博物院"][data-active="true"] { background: var(--cat-six); }
+.category-chip[data-cat="十大博物館"][data-active="true"] { background: var(--cat-ten); }
+.category-chip[data-cat="特色ある博物館"][data-active="true"] { background: var(--cat-special); }
+
+.script-pref {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.script-pref__label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.script-pref__buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.script-pref__btn {
+  flex: 1;
+  font-size: 0.74rem;
+  padding: 5px 4px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.script-pref__btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.script-pref__hint {
+  font-size: 0.66rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 6px 0 0;
+}
+
+.leaflet-div-icon-sub {
+  background: #fff;
+  border: 2px dashed currentColor;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+
+.extra-loc {
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.extra-loc__label {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.extra-loc__place {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.extra-loc__note {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin-top: 5px;
+}
+
+.extra-loc .detail-content__zh {
+  margin-bottom: 0;
+}
+
+.npm-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.npm-card {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper-alt);
+  text-decoration: none;
+  color: inherit;
+}
+
+.npm-card:hover {
+  border-color: var(--accent);
+}
+
+.npm-card__img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: #e6ddc9;
+}
+
+.npm-card__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.npm-card__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.npm-card__zh {
+  font-size: 0.74rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+.npm-card__meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.npm-card__id,
+.npm-card__license {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.npm-card__license {
+  display: inline-block;
+  background: #e8eef2;
+  color: #1f5670;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.npm-card__pending {
+  font-size: 0.66rem;
+  color: #9a7b4f;
+  margin-top: 3px;
+}
+
+.npm-block__note {
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
+.digital-card {
+  display: block;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 1px solid var(--line);
+  border-left: 3px solid #2e6e8e;
+  border-radius: 6px;
+  background: #f3f7fa;
+  text-decoration: none;
+  color: inherit;
+}
+
+.digital-card:hover {
+  border-left-color: var(--accent);
+  background: #eef4f8;
+}
+
+.digital-card__head {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.digital-card__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #1f5670;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.digital-card__kind {
+  font-size: 0.64rem;
+  background: #dbe6ee;
+  color: #1f5670;
+  border-radius: 3px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+.digital-card__pub {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.digital-card__note {
+  font-size: 0.78rem;
+  line-height: 1.7;
+  margin-top: 4px;
+}
+
+.detail-content__knowledge {
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  border-left: 3px solid var(--line);
+  background: var(--paper-alt);
+}
+
+.detail-content__knowledge h3 {
+  font-size: 0.82rem;
+  margin: 0 0 6px;
+}
+
+.detail-content__knowledge p {
+  font-size: 0.83rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.detail-content__knowledge--jp {
+  border-left-color: #b5453b;
+  background: #fbf1ee;
+}
+
+.detail-content__knowledge--jp h3 {
+  color: #8f3229;
+}
+
+.detail-content__knowledge--latest {
+  border-left-color: #2e6e8e;
+  background: #eef4f8;
+}
+
+.detail-content__knowledge--latest h3 {
+  color: #1f5670;
+}
+
+.site-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-list-item {
+  padding: 8px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  margin-bottom: 2px;
+}
+
+.site-list-item:hover,
+.site-list-item.active {
+  background: var(--paper);
+}
+
+.site-list-item.active {
+  border-left-color: var(--accent);
+}
+
+.site-list-item__num {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 999px;
+  padding: 1px 6px;
+  margin-right: 6px;
+}
+
+.site-list-item__name {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.site-list-item__loc {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-left: 22px;
+}
+
+.site-list-group {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin: 14px 0 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-list-group:first-child {
+  margin-top: 0;
+}
+
+.index-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.6;
+  background: var(--paper-alt);
+  border-radius: 6px;
+  padding: 8px;
+  margin: 0 0 12px;
+}
+
+.index-list-group {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin: 10px 0 4px;
+}
+
+.index-list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 4px;
+  font-size: 0.82rem;
+  border-bottom: 1px dashed var(--line);
+  cursor: default;
+}
+
+.index-list-item__pages {
+  color: var(--muted);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.index-list-item.linkable {
+  cursor: pointer;
+}
+
+.index-list-item.linkable .index-list-item__name {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.detail-content__category {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 9px;
+  margin-bottom: 6px;
+}
+
+.detail-content__reading {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.detail-content__zh {
+  background: #f4ede0;
+  border: 1px dashed var(--accent);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 8px 0 12px;
+}
+
+.detail-content__zh-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.detail-content__zh-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.detail-content__zh-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-content__zh-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.detail-content__zh-address {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.detail-content__zh-copy {
+  flex-shrink: 0;
+  font-size: 0.74rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.detail-content__zh-copy:hover {
+  background: var(--accent-dark);
+}
+
+.detail-content__travel {
+  background: var(--paper-alt);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.detail-content__travel dt {
+  font-weight: 700;
+  color: var(--accent-dark);
+  float: left;
+  clear: left;
+  width: 4.5em;
+}
+
+.detail-content__travel dd {
+  margin: 0 0 4px 4.7em;
+}
+
+.detail-content__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 14px;
+}
+
+.detail-content__chip {
+  font-size: 0.74rem;
+  background: var(--paper-alt);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+}
+
+.detail-content__chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.detail-content__sources {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+
+.detail-content__sources a {
+  color: var(--accent-dark);
+}
+
+.detail-content__bookpage {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 14px;
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+
+@media (max-width: 860px) {
+  .detail-content__travel dt {
+    float: none;
+    width: auto;
+  }
+  .detail-content__travel dd {
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+}

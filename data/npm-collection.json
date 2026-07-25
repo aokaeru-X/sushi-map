@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "source": "國立故宮博物院 Open Data",
+    "sourceLabel": "manual-seed",
+    "portal": "https://theme.npm.edu.tw/opendata/",
+    "license": "低解像度画像（100万画素）はCC0、中解像度画像（600万画素）はCC BY 4.0。CC BYの画像を用いる場合は「國立故宮博物院」の出所表示が必要。",
+    "fetchedAt": "2026-07-24T22:42:07.914Z",
+    "matched": 0,
+    "total": 10,
+    "note": "本ファイルは scripts/fetch-npm-opendata.mjs が生成する。provenance が manual の項目は APIやデータセットとの突き合わせが未了で、参照リンクのみを持つ。"
+  },
+  "items": [
+    {
+      "siteId": "s29",
+      "workJa": "快雪時晴帖",
+      "workZhTw": "快雪時晴帖",
+      "artist": "王羲之（伝）",
+      "dynasty": "東晉",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Article.aspx?sNo=04001001",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "自叙帖",
+      "workZhTw": "自敘帖",
+      "artist": "懷素",
+      "dynasty": "唐",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "書譜",
+      "workZhTw": "書譜",
+      "artist": "孫過庭",
+      "dynasty": "唐",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "寒食帖",
+      "workZhTw": "黃州寒食帖",
+      "artist": "蘇軾",
+      "dynasty": "北宋",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "花気薫人帖",
+      "workZhTw": "花氣薰人帖",
+      "artist": "黃庭堅",
+      "dynasty": "北宋",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "遠宦帖",
+      "workZhTw": "遠宦帖",
+      "artist": "王羲之（伝）",
+      "dynasty": "東晉",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "蜀素帖",
+      "workZhTw": "蜀素帖",
+      "artist": "米芾",
+      "dynasty": "北宋",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "毛公鼎",
+      "workZhTw": "毛公鼎",
+      "artist": "—",
+      "dynasty": "西周",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "散氏盤",
+      "workZhTw": "散氏盤",
+      "artist": "—",
+      "dynasty": "西周",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    },
+    {
+      "siteId": "s29",
+      "workJa": "祭姪文稿",
+      "workZhTw": "祭姪文稿",
+      "artist": "顏真卿",
+      "dynasty": "唐",
+      "npmId": null,
+      "imageUrl": null,
+      "detailUrl": "https://theme.npm.edu.tw/selection/Category.aspx?sNo=03000118",
+      "license": null,
+      "provenance": "manual"
+    }
+  ]
+}

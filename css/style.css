@@ -46,6 +46,27 @@ html, body {
   color: #cbbfa4;
 }
 
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.app-header__nav a {
+  color: #f1e9d8;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border: 1px solid rgba(241, 233, 216, 0.4);
+  border-radius: 6px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.app-header__nav a:hover {
+  border-color: var(--accent);
+  color: #fff;
+}
+
 .app-header__toggle {
   display: none;
   background: var(--accent);
@@ -324,6 +345,7 @@ html, body {
 
 @media (max-width: 860px) {
   .app-header__toggle { display: inline-block; }
+  .app-header__nav a { padding: 5px 8px; font-size: 0.72rem; }
 
   .app-body {
     position: relative;
