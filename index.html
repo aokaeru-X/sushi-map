@@ -3,31 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>蘇軾（蘇東坡）足跡地図 — 生涯と代表作</title>
-<meta name="description" content="蘇軾（1037–1101）が歴任・左遷された地を年代順に地図上にマッピングし、各地での出来事と代表作を紹介するインタラクティブマップ。">
+<title>書の旅 — 中国書道史跡・博物館ガイド</title>
+<meta name="description" content="中国全土の重要史跡・三大石窟・見逃せない史跡・六大博物院・十大博物館・特色ある博物館と、名跡・人名索引を網羅した、単独旅行者のための中国書道史跡ガイド。">
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calligraphy.css">
 </head>
 <body>
   <header class="app-header">
     <div class="app-header__title">
-      <h1>蘇軾（蘇東坡）足跡地図</h1>
-      <p>景祐3年（1037年）〜建中靖国元年（1101年） — 生涯の赴任・左遷の地と代表作</p>
+      <h1>書の旅 — 中国書道史跡ガイド</h1>
+      <p>重要史跡・三大石窟・見逃せない史跡・六大博物院・十大博物館・特色ある博物館 全55件 ＋ 名跡・人名索引</p>
     </div>
-    <button id="toggle-sidebar" class="app-header__toggle" aria-label="年表を開閉">年表 ☰</button>
+    <nav class="app-header__nav">
+      <a href="sushi.html">蘇軾足跡地図</a>
+    </nav>
+    <button id="toggle-sidebar" class="app-header__toggle" aria-label="メニューを開閉">メニュー ☰</button>
   </header>
 
   <div class="app-body">
     <aside id="sidebar" class="sidebar">
       <div class="sidebar__intro">
-        <p>眉州眉山に生まれ、科挙及第後は各地の地方官を歴任。新法党との政争により黄州・恵州・儋州へと左遷を重ねながら、赴任地ごとに治水・教育・文学の足跡を残した。番号をクリックすると地図が該当地に移動します。</p>
+        <p>本サイトは、日本と中国の鑑定番組にも通じる「書」への関心を出発点に、中国全土の書道史跡・碑刻・博物館を網羅し、旅行者が自ら計画を立てて訪ねられるようにまとめたガイドです。</p>
+        <details class="sidebar__travel-modes">
+          <summary>3つの旅のスタイル</summary>
+          <ol>
+            <li><b>①ツアー参加型</b> — 旅行会社が企画した中国ツアーに参加する</li>
+            <li><b>②有志団体型</b> — 志を同じくする仲間を募り、訪問都市を相談しながら決める</li>
+            <li><b>③個人手配型</b> — 航空券・宿泊先を自ら手配し、単独で計画・訪問する（本サイトはこの③を主眼に、①②にも対応できる情報を掲載）</li>
+          </ol>
+        </details>
       </div>
-      <ol id="timeline-list" class="timeline-list"></ol>
 
-      <div class="sidebar__layers">
-        <h2>表示レイヤー</h2>
-        <label><input type="checkbox" id="layer-life" checked> 生涯の足跡（番号ピン）</label>
-        <label><input type="checkbox" id="layer-memorials"> 現存する記念地・史跡</label>
+      <div class="view-tabs">
+        <button class="view-tab active" data-view="map">地図で見る</button>
+        <button class="view-tab" data-view="index">名跡・人名索引</button>
+      </div>
+
+      <div id="map-view-controls" class="view-panel">
+        <div class="search-box">
+          <input type="search" id="site-search" placeholder="史跡・博物館名で検索…">
+        </div>
+        <div class="category-filters" id="category-filters"></div>
+
+        <div class="script-pref">
+          <span class="script-pref__label">中国語表記</span>
+          <div class="script-pref__buttons" id="script-pref">
+            <button type="button" class="script-pref__btn active" data-script="auto">自動</button>
+            <button type="button" class="script-pref__btn" data-script="cn">簡体字</button>
+            <button type="button" class="script-pref__btn" data-script="tw">繁体字</button>
+          </div>
+          <p class="script-pref__hint">「自動」は大陸の史跡に簡体字、台湾（台北・国立故宮博物院／中央研究院）に繁体字を表示します。</p>
+        </div>
+
+        <ol id="site-list" class="site-list"></ol>
+      </div>
+
+      <div id="index-view-controls" class="view-panel view-panel--hidden">
+        <div class="search-box">
+          <input type="search" id="index-search" placeholder="名跡・人名で検索…">
+        </div>
+        <p class="index-note">書跡・碑刻・人名から、それを実見できる史跡・博物館を引くための索引です。右側に対応する史跡の番号と名称を表示し、クリックすると地図が該当地に移動します。</p>
+        <div id="index-list" class="index-list"></div>
       </div>
     </aside>
 
@@ -41,6 +78,6 @@
   </div>
 
   <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/calligraphy.js"></script>
 </body>
 </html>

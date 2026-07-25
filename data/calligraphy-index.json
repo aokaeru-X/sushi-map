@@ -1,0 +1,931 @@
+{
+  "note": "本データは書籍の巻末「名跡・人名索引」を撮影・判読して作成した部分データに、本サイトが収録する55件の史跡・博物館で実見できる主要書跡を補ったものです。判読できたのはあ行・か行・さ行・た行・は行・ま行・や行・ら行の一部で、な行(一部)・ぬ〜の行・わ行は未収録です。各項目は地図上の該当史跡へのクロスリンクを持ちます。",
+  "rows": [
+    {
+      "row": "あ行",
+      "items": [
+        {
+          "name": "伊闕仏龕碑",
+          "relatedSiteId": "s15"
+        },
+        {
+          "name": "乙瑛碑",
+          "relatedSiteId": "s09"
+        },
+        {
+          "name": "伊秉綬"
+        },
+        {
+          "name": "姨母帖",
+          "relatedSiteId": "s37"
+        },
+        {
+          "name": "殷墟",
+          "relatedSiteId": "s01"
+        },
+        {
+          "name": "雲岡石窟",
+          "relatedSiteId": "s16"
+        },
+        {
+          "name": "雲峰山",
+          "relatedSiteId": "s10"
+        },
+        {
+          "name": "瘞鶴銘",
+          "relatedSiteId": "s26"
+        },
+        {
+          "name": "嶧山刻石",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "嶧山摩崖",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "袁安碑",
+          "relatedSiteId": "s30"
+        },
+        {
+          "name": "遠宦帖",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "王義之",
+          "relatedSiteId": "s06"
+        },
+        {
+          "name": "王円簶",
+          "relatedSiteId": "s14"
+        },
+        {
+          "name": "王暉石棺",
+          "relatedSiteId": "s19"
+        },
+        {
+          "name": "王子午鼎",
+          "relatedSiteId": "s30"
+        },
+        {
+          "name": "欧陽詢",
+          "relatedSiteId": "s40"
+        },
+        {
+          "name": "王琳墓誌"
+        },
+        {
+          "name": "温彦博碑",
+          "relatedSiteId": "s54"
+        },
+        {
+          "name": "温泉銘",
+          "relatedSiteId": "s14"
+        }
+      ]
+    },
+    {
+      "row": "か行",
+      "items": [
+        {
+          "name": "会稽刻石",
+          "relatedSiteId": "s17"
+        },
+        {
+          "name": "快雪時晴帖",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "懐素",
+          "relatedSiteId": "s35"
+        },
+        {
+          "name": "開通褒斜道刻石",
+          "relatedSiteId": "s04"
+        },
+        {
+          "name": "虢季子白盤",
+          "relatedSiteId": "s34"
+        },
+        {
+          "name": "虢季銅盤"
+        },
+        {
+          "name": "郭店楚簡"
+        },
+        {
+          "name": "何君閣道摩崖",
+          "relatedSiteId": "s19"
+        },
+        {
+          "name": "葛山摩崖",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "観海童詩",
+          "relatedSiteId": "s10"
+        },
+        {
+          "name": "顔勤礼碑",
+          "relatedSiteId": "s13"
+        },
+        {
+          "name": "顔氏家廟碑",
+          "relatedSiteId": "s13"
+        },
+        {
+          "name": "韓仁銘",
+          "relatedSiteId": "s20"
+        },
+        {
+          "name": "関沮周家台秦簡",
+          "relatedSiteId": "s47"
+        },
+        {
+          "name": "韓貞造像記",
+          "relatedSiteId": "s24"
+        },
+        {
+          "name": "孔子廟堂碑",
+          "relatedSiteId": "s40"
+        },
+        {
+          "name": "高台漢簡",
+          "relatedSiteId": "s47"
+        },
+        {
+          "name": "高貞碑",
+          "relatedSiteId": "s52"
+        },
+        {
+          "name": "高宙碑"
+        },
+        {
+          "name": "黄道周"
+        },
+        {
+          "name": "侯馬盟書",
+          "relatedSiteId": "s32"
+        },
+        {
+          "name": "興福寺断碑",
+          "relatedSiteId": "s40"
+        },
+        {
+          "name": "衡方碑",
+          "relatedSiteId": "s03"
+        },
+        {
+          "name": "故宮博物院",
+          "relatedSiteId": "s28"
+        },
+        {
+          "name": "古詩四帖",
+          "relatedSiteId": "s37"
+        },
+        {
+          "name": "呉昌碩"
+        },
+        {
+          "name": "雁塔聖教序",
+          "relatedSiteId": "s12"
+        },
+        {
+          "name": "亀山漢墓塞石",
+          "relatedSiteId": "s18"
+        },
+        {
+          "name": "徽宗",
+          "relatedSiteId": "s28"
+        },
+        {
+          "name": "牛橛造像記",
+          "relatedSiteId": "s15"
+        },
+        {
+          "name": "九成宮醴泉銘"
+        },
+        {
+          "name": "匡喆刻経頌",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "居延漢簡",
+          "relatedSiteId": "s55"
+        },
+        {
+          "name": "魏霊蔵造像記",
+          "relatedSiteId": "s15"
+        },
+        {
+          "name": "銀雀山竹簡",
+          "relatedSiteId": "s36"
+        },
+        {
+          "name": "金農",
+          "relatedSiteId": "s49"
+        },
+        {
+          "name": "苦筍帖",
+          "relatedSiteId": "s35"
+        },
+        {
+          "name": "倪元璐"
+        },
+        {
+          "name": "峋嶁碑",
+          "relatedSiteId": "s17"
+        },
+        {
+          "name": "刑徒磚",
+          "relatedSiteId": "s45"
+        },
+        {
+          "name": "化度寺邕禅師塔銘"
+        },
+        {
+          "name": "元景造像記",
+          "relatedSiteId": "s24"
+        },
+        {
+          "name": "甲骨文",
+          "relatedSiteId": "s44"
+        },
+        {
+          "name": "崗山摩崖",
+          "relatedSiteId": "s25"
+        }
+      ]
+    },
+    {
+      "row": "さ行",
+      "items": [
+        {
+          "name": "蔡倫",
+          "relatedSiteId": "s23"
+        },
+        {
+          "name": "祭姪文稿",
+          "relatedSiteId": "s13"
+        },
+        {
+          "name": "柞伯簋"
+        },
+        {
+          "name": "散氏盤",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "爨宝子碑",
+          "relatedSiteId": "s07"
+        },
+        {
+          "name": "爨龍顔碑",
+          "relatedSiteId": "s07"
+        },
+        {
+          "name": "史晨碑",
+          "relatedSiteId": "s09"
+        },
+        {
+          "name": "始平公造像記",
+          "relatedSiteId": "s15"
+        },
+        {
+          "name": "謝鯤墓誌",
+          "relatedSiteId": "s51"
+        },
+        {
+          "name": "子游残碑"
+        },
+        {
+          "name": "祝允明"
+        },
+        {
+          "name": "受禅表",
+          "relatedSiteId": "s21"
+        },
+        {
+          "name": "徐渭"
+        },
+        {
+          "name": "昇仙太子碑",
+          "relatedSiteId": "s27"
+        },
+        {
+          "name": "上尊号奏",
+          "relatedSiteId": "s21"
+        },
+        {
+          "name": "蜀素帖",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "書譜",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "神烏傅",
+          "relatedSiteId": "s50"
+        },
+        {
+          "name": "晋侯蘇鐘",
+          "relatedSiteId": "s32"
+        },
+        {
+          "name": "晋祠銘",
+          "relatedSiteId": "s11"
+        },
+        {
+          "name": "神龍半印本"
+        },
+        {
+          "name": "睡虎地秦墓竹簡",
+          "relatedSiteId": "s38"
+        },
+        {
+          "name": "西狭頌",
+          "relatedSiteId": "s05"
+        },
+        {
+          "name": "青銅器"
+        },
+        {
+          "name": "石門頌",
+          "relatedSiteId": "s04"
+        },
+        {
+          "name": "石門銘",
+          "relatedSiteId": "s04"
+        },
+        {
+          "name": "石鼓文",
+          "relatedSiteId": "s28"
+        },
+        {
+          "name": "鮮于璜碑",
+          "relatedSiteId": "s53"
+        },
+        {
+          "name": "禅国山碑",
+          "relatedSiteId": "s22"
+        },
+        {
+          "name": "尖山摩崖",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "宋璟碑"
+        },
+        {
+          "name": "争坐位文稿",
+          "relatedSiteId": "s13"
+        }
+      ]
+    },
+    {
+      "row": "た行",
+      "items": [
+        {
+          "name": "曹全碑",
+          "relatedSiteId": "s40"
+        },
+        {
+          "name": "走馬楼呉簡",
+          "relatedSiteId": "s48"
+        },
+        {
+          "name": "走馬楼三国呉簡",
+          "relatedSiteId": "s48"
+        },
+        {
+          "name": "楚王盦鼎"
+        },
+        {
+          "name": "蘇軾",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "蘇馬湾界域刻石",
+          "relatedSiteId": "s50"
+        },
+        {
+          "name": "大盂鼎",
+          "relatedSiteId": "s34"
+        },
+        {
+          "name": "大克鼎",
+          "relatedSiteId": "s35"
+        },
+        {
+          "name": "泰山刻石",
+          "relatedSiteId": "s03"
+        },
+        {
+          "name": "泰山金剛経",
+          "relatedSiteId": "s03"
+        },
+        {
+          "name": "太宗",
+          "relatedSiteId": "s11"
+        },
+        {
+          "name": "大唐中興頌"
+        },
+        {
+          "name": "多宝塔碑",
+          "relatedSiteId": "s13"
+        },
+        {
+          "name": "中岳嵩高霊廟碑",
+          "relatedSiteId": "s08"
+        },
+        {
+          "name": "中山王鉄方壷",
+          "relatedSiteId": "s31"
+        },
+        {
+          "name": "仲尼夢奠帖",
+          "relatedSiteId": "s37"
+        },
+        {
+          "name": "張家山漢簡",
+          "relatedSiteId": "s47"
+        },
+        {
+          "name": "趙儀碑",
+          "relatedSiteId": "s19"
+        },
+        {
+          "name": "張旭",
+          "relatedSiteId": "s37"
+        },
+        {
+          "name": "趙之謙"
+        },
+        {
+          "name": "張瑞図"
+        }
+      ]
+    },
+    {
+      "row": "は行",
+      "items": [
+        {
+          "name": "裴岑紀功碑",
+          "relatedSiteId": "s43"
+        },
+        {
+          "name": "八関斎会報徳記"
+        },
+        {
+          "name": "八大山人"
+        },
+        {
+          "name": "万歳通天進帖",
+          "relatedSiteId": "s37"
+        },
+        {
+          "name": "麃孝禹刻石",
+          "relatedSiteId": "s36"
+        },
+        {
+          "name": "平復帖",
+          "relatedSiteId": "s28"
+        },
+        {
+          "name": "傅山",
+          "relatedSiteId": "s32"
+        },
+        {
+          "name": "米芾",
+          "relatedSiteId": "s26"
+        },
+        {
+          "name": "房玄齢碑",
+          "relatedSiteId": "s54"
+        },
+        {
+          "name": "包山楚簡",
+          "relatedSiteId": "s47"
+        },
+        {
+          "name": "宝墨軒",
+          "relatedSiteId": "s26"
+        },
+        {
+          "name": "東堪石室銘",
+          "relatedSiteId": "s10"
+        },
+        {
+          "name": "鄧石如"
+        },
+        {
+          "name": "董其昌",
+          "relatedSiteId": "s33"
+        },
+        {
+          "name": "鉄山摩崖",
+          "relatedSiteId": "s25"
+        },
+        {
+          "name": "鄭道昭",
+          "relatedSiteId": "s10"
+        },
+        {
+          "name": "鄭燮",
+          "relatedSiteId": "s49"
+        },
+        {
+          "name": "褚遂良",
+          "relatedSiteId": "s12"
+        },
+        {
+          "name": "張猛龍碑",
+          "relatedSiteId": "s09"
+        },
+        {
+          "name": "張遷碑",
+          "relatedSiteId": "s03"
+        }
+      ]
+    },
+    {
+      "row": "ま行",
+      "items": [
+        {
+          "name": "馬王堆漢墓",
+          "relatedSiteId": "s39"
+        },
+        {
+          "name": "毛公鼎",
+          "relatedSiteId": "s29"
+        },
+        {
+          "name": "文殊般若経",
+          "relatedSiteId": "s25"
+        }
+      ]
+    },
+    {
+      "row": "や行",
+      "items": [
+        {
+          "name": "羊窩頭界域刻石",
+          "relatedSiteId": "s50"
+        },
+        {
+          "name": "楊淮表紀",
+          "relatedSiteId": "s04"
+        },
+        {
+          "name": "谷朗碑",
+          "relatedSiteId": "s23"
+        }
+      ]
+    },
+    {
+      "row": "ら行",
+      "items": [
+        {
+          "name": "蘭亭序",
+          "relatedSiteId": "s06"
+        },
+        {
+          "name": "李斯",
+          "relatedSiteId": "s03"
+        },
+        {
+          "name": "里耶秦簡",
+          "relatedSiteId": "s02"
+        },
+        {
+          "name": "龍門二十品",
+          "relatedSiteId": "s15"
+        },
+        {
+          "name": "礼器碑",
+          "relatedSiteId": "s09"
+        },
+        {
+          "name": "琅耶台刻石",
+          "relatedSiteId": "s34"
+        },
+        {
+          "name": "魯孝王刻石",
+          "relatedSiteId": "s09"
+        },
+        {
+          "name": "論経書詩",
+          "relatedSiteId": "s10"
+        }
+      ]
+    },
+    {
+      "row": "補遺（本サイト収録史跡の関連書跡）",
+      "note": "原本の索引には現れないが、本サイトが収録する55件の史跡・博物館で実見できる主要な書跡・出土資料。",
+      "items": [
+        {
+          "name": "紀泰山銘",
+          "relatedSiteId": "s03",
+          "source": "site"
+        },
+        {
+          "name": "経石峪金剛経",
+          "relatedSiteId": "s03",
+          "source": "site"
+        },
+        {
+          "name": "鄐君開通褒斜道刻石",
+          "relatedSiteId": "s04",
+          "source": "site"
+        },
+        {
+          "name": "楊淮表記",
+          "relatedSiteId": "s04",
+          "source": "site"
+        },
+        {
+          "name": "五瑞図",
+          "relatedSiteId": "s05",
+          "source": "site"
+        },
+        {
+          "name": "鄭文公碑",
+          "relatedSiteId": "s10",
+          "source": "site"
+        },
+        {
+          "name": "羅婉順墓誌",
+          "relatedSiteId": "s13",
+          "source": "site"
+        },
+        {
+          "name": "敦煌写経",
+          "relatedSiteId": "s14",
+          "source": "site"
+        },
+        {
+          "name": "孫秋生造像記",
+          "relatedSiteId": "s15",
+          "source": "site"
+        },
+        {
+          "name": "楊大眼造像記",
+          "relatedSiteId": "s15",
+          "source": "site"
+        },
+        {
+          "name": "窆石題刻",
+          "relatedSiteId": "s17",
+          "source": "site"
+        },
+        {
+          "name": "高頤闕題額銘",
+          "relatedSiteId": "s19",
+          "source": "site"
+        },
+        {
+          "name": "樊敏闕",
+          "relatedSiteId": "s19",
+          "source": "site"
+        },
+        {
+          "name": "天発神讖碑",
+          "relatedSiteId": "s22",
+          "source": "site"
+        },
+        {
+          "name": "帝后礼仏図（鞏県石窟）",
+          "relatedSiteId": "s24",
+          "source": "site"
+        },
+        {
+          "name": "大空王仏（尖山摩崖）",
+          "relatedSiteId": "s25",
+          "source": "site"
+        },
+        {
+          "name": "自叙帖",
+          "relatedSiteId": "s29",
+          "source": "site"
+        },
+        {
+          "name": "寒食帖",
+          "relatedSiteId": "s29",
+          "source": "site"
+        },
+        {
+          "name": "花気薫人帖",
+          "relatedSiteId": "s29",
+          "source": "site"
+        },
+        {
+          "name": "熹平石経",
+          "relatedSiteId": "s30",
+          "source": "site"
+        },
+        {
+          "name": "蓮鶴方壺",
+          "relatedSiteId": "s30",
+          "source": "site"
+        },
+        {
+          "name": "杜嶺方鼎",
+          "relatedSiteId": "s30",
+          "source": "site"
+        },
+        {
+          "name": "中山王譽壺銘",
+          "relatedSiteId": "s31",
+          "source": "site"
+        },
+        {
+          "name": "上虞帖",
+          "relatedSiteId": "s35",
+          "source": "site"
+        },
+        {
+          "name": "鴨頭丸帖",
+          "relatedSiteId": "s35",
+          "source": "site"
+        },
+        {
+          "name": "淳化閣帖",
+          "relatedSiteId": "s35",
+          "source": "site"
+        },
+        {
+          "name": "銀雀山漢簡（孫子兵法・孫臏兵法）",
+          "relatedSiteId": "s36",
+          "source": "site"
+        },
+        {
+          "name": "曾侯乙墓竹簡",
+          "relatedSiteId": "s38",
+          "source": "site"
+        },
+        {
+          "name": "雲夢鄭家湖長文木觚",
+          "relatedSiteId": "s38",
+          "source": "site"
+        },
+        {
+          "name": "馬王堆帛書",
+          "relatedSiteId": "s39",
+          "source": "site"
+        },
+        {
+          "name": "開成石経",
+          "relatedSiteId": "s40",
+          "source": "site"
+        },
+        {
+          "name": "大秦景教流行中国碑",
+          "relatedSiteId": "s40",
+          "source": "site"
+        },
+        {
+          "name": "玄秘塔碑",
+          "relatedSiteId": "s40",
+          "source": "site"
+        },
+        {
+          "name": "石台孝経",
+          "relatedSiteId": "s40",
+          "source": "site"
+        },
+        {
+          "name": "皇甫誕碑",
+          "relatedSiteId": "s40",
+          "source": "site"
+        },
+        {
+          "name": "井真成墓誌（西北大学博物館蔵）",
+          "relatedSiteId": "s41",
+          "source": "site"
+        },
+        {
+          "name": "唐代墓誌銘",
+          "relatedSiteId": "s41",
+          "source": "site"
+        },
+        {
+          "name": "李柏文書（原本は龍谷大学蔵）",
+          "relatedSiteId": "s43",
+          "source": "site"
+        },
+        {
+          "name": "吐魯番文書",
+          "relatedSiteId": "s43",
+          "source": "site"
+        },
+        {
+          "name": "郭虚己墓誌",
+          "relatedSiteId": "s45",
+          "source": "site"
+        },
+        {
+          "name": "荀岳墓碑",
+          "relatedSiteId": "s45",
+          "source": "site"
+        },
+        {
+          "name": "肥致碑",
+          "relatedSiteId": "s45",
+          "source": "site"
+        },
+        {
+          "name": "何尊（宅茲中國銘）",
+          "relatedSiteId": "s46",
+          "source": "site"
+        },
+        {
+          "name": "胡家草場漢簡",
+          "relatedSiteId": "s47",
+          "source": "site"
+        },
+        {
+          "name": "二年律令",
+          "relatedSiteId": "s47",
+          "source": "site"
+        },
+        {
+          "name": "算数書",
+          "relatedSiteId": "s47",
+          "source": "site"
+        },
+        {
+          "name": "望山楚簡",
+          "relatedSiteId": "s47",
+          "source": "site"
+        },
+        {
+          "name": "隋煬帝墓誌",
+          "relatedSiteId": "s49",
+          "source": "site"
+        },
+        {
+          "name": "尹湾漢墓簡牘",
+          "relatedSiteId": "s50",
+          "source": "site"
+        },
+        {
+          "name": "東海廟碑",
+          "relatedSiteId": "s50",
+          "source": "site"
+        },
+        {
+          "name": "六朝墓誌",
+          "relatedSiteId": "s51",
+          "source": "site"
+        },
+        {
+          "name": "馬鳴寺碑",
+          "relatedSiteId": "s52",
+          "source": "site"
+        },
+        {
+          "name": "高慶碑",
+          "relatedSiteId": "s52",
+          "source": "site"
+        },
+        {
+          "name": "朱鮪石室画像",
+          "relatedSiteId": "s52",
+          "source": "site"
+        },
+        {
+          "name": "寒切帖",
+          "relatedSiteId": "s53",
+          "source": "site"
+        },
+        {
+          "name": "洛神賦（趙孟頫）",
+          "relatedSiteId": "s53",
+          "source": "site"
+        },
+        {
+          "name": "太保鼎",
+          "relatedSiteId": "s53",
+          "source": "site"
+        },
+        {
+          "name": "尉遅敬德碑（飛白書碑額）",
+          "relatedSiteId": "s54",
+          "source": "site"
+        },
+        {
+          "name": "李靖碑",
+          "relatedSiteId": "s54",
+          "source": "site"
+        },
+        {
+          "name": "昭陵六駿",
+          "relatedSiteId": "s54",
+          "source": "site"
+        }
+      ]
+    }
+  ]
+}
