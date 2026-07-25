@@ -507,9 +507,7 @@
         var el = document.createElement("div");
         el.className = "index-list-item" + (it.relatedSiteId ? " linkable" : "");
         var site = it.relatedSiteId ? sitesById[it.relatedSiteId] : null;
-        var rightText = (it.bookPages && it.bookPages.length)
-          ? "p." + it.bookPages.join("・")
-          : (site ? site.number + ". " + site.name : "");
+        var rightText = site ? site.number + ". " + site.name : "";
         el.innerHTML =
           '<span class="index-list-item__name">' + escapeHtml(it.name) + '</span>' +
           '<span class="index-list-item__pages">' + escapeHtml(rightText) + '</span>';
